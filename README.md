@@ -5,7 +5,7 @@ This full-stack site will take in results from users' survey, then compare their
 ### Link: https://vast-plains-47013.herokuapp.com/
 
 ### Technologies Used
-Node.js
-express npm
-path npm
+*Node.js
+*express npm
+*path npm
 
