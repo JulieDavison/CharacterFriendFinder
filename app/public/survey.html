@@ -125,7 +125,7 @@
                 </select>
             </div>
         </form>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" onclick=sendScores()>Submit</button>
     </div>
     <script>
         var selectItems = $('.select-val');
@@ -135,9 +135,30 @@
             scores.push(elementValue);
         }
 
-       //We need to make a post req to our back end with the url, name, and scores
+        //We need to make a post req to our back end with the url, name, and scores
 
-       //Use ajax or axios
+        //Use ajax or axios
+
+        function sendScores()
+			{
+					$.ajax({
+            type:"POST",
+            url: "/api/friends",
+            data: {"scores": scores},
+            contentType: "application/json; charset=utf-8",
+            success: function(data) { 
+              	// data should look like:
+               /*     
+               {
+                  name: "Mickey Mouse",
+                  photo: "https://www.google.com/imgres?imgurl=http%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0054%2F4371%2F5170%2Fproducts%2FFiGPiN_M14_Mickey_Mouse_MICKEY_MOUSE_FRIENDS_PIN_grande.png%3Fv%3D1539210895&imgrefurl=https%3A%2F%2Ffigpin.com%2Fproducts%2Fmickey-mouse-m14&docid=lQEYVTgY499XkM&tbnid=ewugTTlNJhfFHM%3A&vet=10ahUKEwiVvIrg243kAhVGeawKHcvGCpQQMwiDASgDMAM..i&w=343&h=600&bih=969&biw=1920&q=mickey%20mouse%20images&ved=0ahUKEwiVvIrg243kAhVGeawKHcvGCpQQMwiDASgDMAM&iact=mrc&uact=8",
+                  scores: [3,3,1,5,3,5,5,2,1,1]
+              }
+    				*/
+              	window.alert("I got response! " + JSON.stringify(data) ); 
+              	document.getElementById("resId").setAttribute("src",data.photo ) }
+          });
+			} 
     </script>
 </body>
 

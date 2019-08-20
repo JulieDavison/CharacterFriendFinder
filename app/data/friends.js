@@ -13,7 +13,7 @@ var charFriends = [
         name: "Peter Pan",
         photo: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fcomicvine1.cbsistatic.com%2Fuploads%2Fscale_small%2F11%2F111746%2F4352268-dis10.jpg&imgrefurl=https%3A%2F%2Fcomicvine.gamespot.com%2Fpeter-pan%2F4005-39853%2F&docid=MExBhyrDtvjs8M&tbnid=fNXjCjPrQPLtxM%3A&vet=10ahUKEwjp7KeE3I3kAhUNPq0KHVgVDWUQMwijASgWMBY..i&w=432&h=640&bih=969&biw=1920&q=peter%20pan%20images&ved=0ahUKEwjp7KeE3I3kAhUNPq0KHVgVDWUQMwijASgWMBY&iact=mrc&uact=8",
         scores: [3,5,1,5,1,5,5,1,5,1]
-    },
+    }
     
 ];
 
