@@ -19,7 +19,7 @@ module.exports = function (app) {
             }
         }
         scoresArr.push(scoreDiff);
-
+        console.log(scoresArr + "This is line 22 of apiRoutes.js");
 
         for (var i = 0; i < scoresArr.length; i++) {
             if (scoresArr[i] <= scoresArr[bestMatch]){

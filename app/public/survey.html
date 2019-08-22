@@ -127,7 +127,29 @@
         </form>
         <button type="submit" class="btn btn-primary" onclick=sendScores()>Submit</button>
     </div>
+
+    <!-- Modal after survey completion
+    <div id="bestFriendModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Your New Best Friend</h1>
+                </div>
+                <div class="modal-body">
+                    <h2 id="bestFriend"></h2>
+                    <img id="bestFriendPhoto" src="#">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div> -->
+
     <script>
+        // doc.ready all js needs to be wrapped in it.
         var selectItems = $('.select-val');
         var scores = [];
         for (let index = 0; index < selectItems.length; index++) {
@@ -148,7 +170,7 @@
             }
             //save scores into local variable for easy printing and assignment later in the ajax post
             var scoresData = JSON.stringify({ "scores": scores })
-            console.log("Sending scoresData:" + scoresData) // this should show up in the browser console
+            // console.log("Sending scoresData:" + scoresData) // this should show up in the browser console
             $.ajax({
                 type: "POST",
                 url: "/api/friends",
@@ -163,8 +185,8 @@
                        scores: [3,3,1,5,3,5,5,2,1,1]
                    }
                          */
-                    window.alert("I got response! " + JSON.stringify(data));
-                    
+                    window.alert("I got response! " + JSON.stringify(data.name));
+
                     // This gets the data and sets the image source to the photo element reutrned fromthe api
                     // document.getElementById("bestFriendPhoto").setAttribute("src", data.photo)
 
