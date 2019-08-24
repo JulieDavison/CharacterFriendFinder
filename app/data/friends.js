@@ -20,6 +20,11 @@ var charFriends = [
         scores: [1,1,1,2,5,1,5,3,5,1]
     },
     {
+        name: "Olaf",
+        photo: "https://vignette.wikia.nocookie.net/disney/images/5/53/Profile_-_Olaf.jpeg",
+        scores: [1,3,1,5,5,1,5,4,5,3]
+    }
+    {
         name: "Captain Hook",
         photo: "https://img.123clipartpng.com/disneys-captain-hook-google-search-disney-captain-hat-clipart-1024_1408.png",
         scores: [5,5,5,5,5,5,1,5,3,5]
