@@ -15,9 +15,14 @@ var charFriends = [
         scores: [3,5,1,5,1,5,5,1,5,1]
     },
     {
+        name: "Ariel",
+        photo: "https://img.cinemablend.com/filter:scale/quill/2/a/1/b/6/f/2a1b6f7c358845180a633b65c37c1c81b991985e.jpg?mw=600",
+        scores: [1,1,1,2,5,1,5,3,5,1]
+    },
+    {
         name: "Captain Hook",
         photo: "https://img.123clipartpng.com/disneys-captain-hook-google-search-disney-captain-hat-clipart-1024_1408.png",
-        scores: [1,1,1,1,1,1,4,1,1,1]
+        scores: [5,5,5,5,5,5,1,5,3,5]
     } 
 ];
 
