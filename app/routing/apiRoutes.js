@@ -9,24 +9,24 @@ module.exports = function (app) {
 
     app.post('/api/friends', function (req, res) {
         var newCharFriendScore = req.body.scores;
-        var scoresArr = [];
-        var bestMatch = 0;
+        var closestScore = Infinity;
+        var bestMatch = null;
 
         for (var i = 0; i < charFriends.length; i++) {
             var scoreDiff = 0;
             for (var d = 0; d < newCharFriendScore.length; d++) {
                 scoreDiff += (Math.abs(parseInt(charFriends[i].scores[d]) - parseInt(newCharFriendScore[d])));
             }
-        }
-        scoresArr.push(scoreDiff);
-        console.log(scoresArr + "This is line 22 of apiRoutes.js");
-
-        for (var i = 0; i < scoresArr.length; i++) {
-            if (scoresArr[i] <= scoresArr[bestMatch]){
-                bestMatch = i;
+            //right here
+            console.log('score-diff', scoreDiff);
+            console.log('closest score', closestScore);
+            if(scoreDiff < closestScore){
+                closestScore = scoreDiff;
+                bestMatch = charFriends[i];
             }
         }
-        var bcf = charFriends[bestMatch];
+
+        var bcf = bestMatch;
         res.json(bcf);
 
         charFriends.push(req.body);

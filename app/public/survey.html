@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label for="your-photo">Your Photo</label>
-                <input type="text" class="form-control" id="your-name" placeholder="Link to your picture">
+                <input type="text" class="form-control" id="your-photo" placeholder="Link to your picture">
             </div>
             <div class="form-group">
                 <label for="question1">1. Swimming is my favorite past-time.</label>
@@ -128,25 +128,26 @@
         <button type="submit" class="btn btn-primary" onclick=sendScores()>Submit</button>
     </div>
 
-    <!-- Modal after survey completion
-    <div id="bestFriendModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title">Your New Best Friend</h1>
-                </div>
-                <div class="modal-body">
-                    <h2 id="bestFriend"></h2>
-                    <img id="bestFriendPhoto" src="#">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    
+    </div>
+    <div id="bestFriendModal" class="modal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close dismiss">&times;</button>
+                        <h3 class="modal-title">Your New Best Friend</h1>
+                    </div>
+                    <div class="modal-body">
+                        <h2 id="bestFriend"></h2>
+                        <img style="width:100px;" id="bestFriendPhoto" src="#">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default dismiss">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div> -->
+        
 
     <script>
         // doc.ready all js needs to be wrapped in it.
@@ -156,6 +157,10 @@
             const elementValue = selectItems[index].value;
             scores.push(elementValue);
         }
+
+        $(document).on('click', '.dismiss', function(){
+            $("#bestFriendModal").toggle();
+        });
 
         //We need to make a post req to our back end with the url, name, and scores
 
@@ -168,8 +173,10 @@
                 const elementValue = selectItems[index].value;
                 scores.push(elementValue);
             }
+            var name = $('#your-name').val();
+            var photo = $('#your-photo').val();
             //save scores into local variable for easy printing and assignment later in the ajax post
-            var scoresData = JSON.stringify({ "scores": scores })
+            var scoresData = JSON.stringify({ scores, name, photo });
             // console.log("Sending scoresData:" + scoresData) // this should show up in the browser console
             $.ajax({
                 type: "POST",
@@ -177,21 +184,11 @@
                 data: scoresData,
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    // data should look like:
-                    /*     
-                    {
-                       name: "Mickey Mouse",
-                       photo: "https://www.google.com/imgres?imgurl=http%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0054%2F4371%2F5170%2Fproducts%2FFiGPiN_M14_Mickey_Mouse_MICKEY_MOUSE_FRIENDS_PIN_grande.png%3Fv%3D1539210895&imgrefurl=https%3A%2F%2Ffigpin.com%2Fproducts%2Fmickey-mouse-m14&docid=lQEYVTgY499XkM&tbnid=ewugTTlNJhfFHM%3A&vet=10ahUKEwiVvIrg243kAhVGeawKHcvGCpQQMwiDASgDMAM..i&w=343&h=600&bih=969&biw=1920&q=mickey%20mouse%20images&ved=0ahUKEwiVvIrg243kAhVGeawKHcvGCpQQMwiDASgDMAM&iact=mrc&uact=8",
-                       scores: [3,3,1,5,3,5,5,2,1,1]
-                   }
-                         */
-                    window.alert("I got response! " + JSON.stringify(data.name));
-
-                    // This gets the data and sets the image source to the photo element reutrned fromthe api
-                    // document.getElementById("bestFriendPhoto").setAttribute("src", data.photo)
+                    $('#bestFriend').text(data.name);
+                    $('#bestFriendPhoto').attr('src', data.photo);
 
                     // this shows the modal. the css in the html tag makes it start out hidden
-                    $("#bestFriendModal").show();
+                    $("#bestFriendModal").toggle();
                 }
             });
         } 
